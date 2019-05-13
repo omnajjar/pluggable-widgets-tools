@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const injectLocalConfigs = require("./injectLocalConfigs");
 
 const args = process.argv.slice(2);
 const indexOf = args.indexOf("--subprojectPath");
@@ -11,7 +12,7 @@ if(indexOf > -1 && args.length > indexOf+1){
 
 const newPath = path.join(__dirname, "../../../../", pathToJoin);
 
-const pkg = require(path.join(newPath, "package.json"));
+const pkg = injectLocalConfigs(require(path.join(newPath, "package.json")),newPath);
 
 const packagePath = pkg.packagePath.replace(/\./g, "\/");
 const widgetName = pkg.widgetName;

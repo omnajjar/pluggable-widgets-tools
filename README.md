@@ -41,6 +41,19 @@ npm run mx-script task
 * `test:e2e:js` Used to execute End-to-end tests using Wdio in your JavaScript Web Project
 * `test:e2e:ts` Used to execute End-to-end tests using Wdio in your TypeScript Web Project
 
+## Local Development
+
+For better team collaboration during widget development you can use your own local config file `local.config.json`, if this file exists in your widget root folder then its values will overwrite the values of `config` property in `package.json`.
+
+```js
+//local.config.json
+{
+    "developmentPort": "5000",
+    "mendixHost": "http://localhost:4200"
+}
+
+```
+
 ## Examples
 `"start": "npm run mx-script start:server -- --open"` 
 

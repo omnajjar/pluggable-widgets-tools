@@ -8,6 +8,7 @@ const webpack = require("webpack");
 const del = require("del");
 const gulpSlash = require("gulp-slash");
 const typingGenerator = require("@mendix/pluggable-widgets-typing-generator");
+const injectLocalConfigs = require("../configs/injectLocalConfigs");
 
 const cwd = process.cwd();
 const args = process.argv.slice(2);
@@ -19,7 +20,7 @@ if(indexOf > -1 && args.length > indexOf+1){
 
 const newPath = path.join(__dirname, "../../../../", pathToJoin);
 
-const pkg = require(path.join(newPath, "package.json"));
+const pkg = injectLocalConfigs(require(path.join(newPath, "package.json")),newPath);
 
 const projectPath = pkg.config.projectPath ? fixSlashes(checkPath(pkg.config.projectPath)) : fixSlashes(path.join(__dirname, `${newPath}/dist/MxTestProject`));
 
